@@ -1,0 +1,23 @@
+HTML Responsive Web Design
+Responsive Web Design is about using HTML and CSS to automatically resize, hide, shrink, or enlarge, a website, to make it look good on all devices (desktops, tablets, and phones).
+Setting The Viewport
+To create a responsive website, add the following <meta> tag to all your web pages:
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+Responsive Images
+Responsive images are images that scale nicely to fit any browser size.
+Using the width Property
+If the CSS width property is set to 100%, the image will be responsive and scale up and down:
+<img src="img_girl.jpg" style="width:100%;">
+
+Show Different Images Depending on Browser Width
+The HTML <picture> element allows you to define different images for different browser window sizes.
+<picture>
+  <source srcset="img_smallflower.jpg" media="(max-width: 600px)">
+  <source srcset="img_flowers.jpg" media="(max-width: 1500px)">
+  <source srcset="flowers.jpg">
+  <img src="img_smallflower.jpg" alt="Flowers">
+</picture>
+
+Responsive Text Size
+<h1 style="font-size:10vw">Hello World</h1>
+
