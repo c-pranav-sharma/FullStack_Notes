@@ -1,0 +1,75 @@
+29-12-2025
+ReactJS
+Features:
+1.Responsive web design-in form of components.
+2.Visualization layouts
+3.Feel and look same for mobile
+import React from 'react'; 
+import ReactDOM from 'react-dom/client'; 
+function Greeting(props) {
+ return <h1>Welcome to TutorialsPoint</h1>
+ }
+const container = document.getElementById("root");
+ const root = ReactDOM.createRoot(container); 
+root.render(<Greeting />);
+4.Functional component/class component
+
+Q1. Create a ReactJS code that displays your semester marks
+
+Characteristics of ReactJS
+Virtual DOM
+Reusable Components
+One-Way Data Binding
+JSX( Javascript extension): For creating  html elements. Eg: createElement
+
+The data cannot be passed by a component to its parent component in any situation.
+Scalability: you create components of any size.
+Flexibility
+Modularity
+
+Limitations of reactJS :
+Lack of quality documentation
+No standard / recommended way to develop application
+Fast development pace
+Advanced use of JavaScript
+JavaScript extension
+Just a UI library
+Architecture of react
+
+<!DOCTYPE html>
+ <html>
+ <head> 
+<meta charset="UTF-8" /> 
+<title>React Application</title>
+ </head> 
+<body> 
+<div id="react-app">
+</div> <script type="module"> import React from 'https://esm.sh/react'; 
+import ReactDOM from 'https://esm.sh/react-dom/client'; 
+function App() { return React.createElement('h1', null, 'Hello React!');
+ }
+ const root = ReactDOM.createRoot(document.getElementById('react-app')); root.render(React.createElement(App)); </script> 
+</body>
+ </html>
+
+Q2. Modify this code to displlay the sum of two numbers 3+2=5
+<!DOCTYPE html>
+ <html>
+ <head> 
+<meta charset="UTF-8" /> 
+<title>React Application</title>
+ </head> 
+<body> 
+<div id="react-app">
+</div> <script type="module"> import React from 'https://esm.sh/react'; 
+import ReactDOM from 'https://esm.sh/react-dom/client'; 
+function App() { return React.createElement('h1', null, '3+2=5');
+ }
+ const root = ReactDOM.createRoot(document.getElementById('react-app')); root.render(React.createElement(App)); </script> 
+</body>
+ </html>
+
+Create element for get 
+React element or jsx
+Root element for the web page
+
