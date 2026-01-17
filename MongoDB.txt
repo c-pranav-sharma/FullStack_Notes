@@ -1,0 +1,82 @@
+MongoDB
+
+KEYWORDS:
+Database is a physical container for collections.
+Collection is a group of MongoDB documents. It is the equivalent of an RDBMS table.
+A document is a set of key-value pairs. Documents have dynamic schema.
+
+
+
+_id is a 12 bytes hexadecimal number which assures the uniqueness of every document.
+
+CMD
+Mongod
+Mongosh
+Use databasename
+Db.createcollection(‘collection_name/excel_sheet name’)
+Db.collection_name.insertOne({})
+Show collections
+Db.name.find()
+Db.name.insertMany([{}])
+Updation: db.name.UpdateOne({‘name’:’Abdul’},{$set:{‘name’:’Shiva’}})
+Deletion: db.name.deleteOne({‘name’:’Arun’})
+
+Create a collection named BillDetail 
+Db.createCollection(“BillDetail”)
+The bill details contain bill no., Vendor name, date of delivery, bill value.
+db.BillDetail.insertMany([{“billno”:1,”vendorname”:”jay”,”dod”:12.07.2025,”billvalue”:12345}])
+
+Display the information in the collection
+Db.billdetails.find()
+
+Update the bill no. of any bill with its new bill value
+Db.billdetails.updateOne({‘billno’:1},{$set:{‘billno’:2}})
+
+Display the bill details of a specific bill no
+Db.billdetails.find(billnoi[2])
+
+Delete  a record based on a column value
+Db.billdetail.deleteOne({‘billno’:1})
+
+INDEX
+Disadvantages: read/write operation will affect the indexing and can introduce delay
+Display indexes: dc.collection.indexes()
+
+Create an index for the collection billno
+Db.billdetails.createIndex({“billno”:1},{unique:true})
+
+Display seven records from your collection 
+Db.billdetails.find().limit(7)
+Display all the bills less than 1000 
+Db.billdetails.find({billvalue:{$lte:1000}})
+
+Display the bills whose bill value is less than 1000 or its bill no is 101
+Db.billdetails.find({$or:[{bill: {$lt:1000}},{billno:101}]})
+
+Display the bill details whose bill value is greater than 1000 
+db.billdetails.find({ bill_value: { $gt: 1000 } })
+
+Display the bill details whose bill value is greater than 1000 
+db.bills.find({ bill_value: { $lt: 1000 } })
+
+Display the bill details whose billno is 101 and bill value is greater than 100
+db.bills.find({ $and: [{ billno: 101 },  { bill_value: { $gt: 100 } }  ]})
+
+SUBSTRING
+Display the records from the bill master table by displaying 1st two positions in the billno, 2nd to 4th position in the date
+
+Db.collection.count()
+
+Limit
+Count
+Skip
+
+Db.collection.aggregate()
+Db.billdetails.aggregate([$billAmount:{billno:”$billno”,count:{$sum:1}}])
+[{billno:1, count:2},{billno:2,count:4},{billno:3,count:8}]
+AVG
+Db.billdetails.aggregate([{$group:{billdetail:”$bill_detail”,bill_detail:{$avg:”$Amount”},count:{$sum:1}}}])
+
+Demonstrate the operations learnt in MongoDB in the form chosen 
+
+
