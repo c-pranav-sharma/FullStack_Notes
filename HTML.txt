@@ -1,0 +1,53 @@
+18-11-2025
+HTML
+Web Design
+Resume
+Personal Information
+Contact details
+Works/internships
+Projects-connected to GitHub with video representation attached
+Certifications
+Skills
+Extra-curricular
+Blog
+Good web page design
+User-centricity-content something related to java
+Mobile responsiveness
+Fast loading speed
+Clear visual hierarchy
+Intuitive navigation
+Functional and non -functional requirements
+Clear Visual Hierarchy
+Intuitive navigation
+What is not to be in a good web design
+Poor navigation
+Slow loading times
+Non-responsive designs
+Auto-playing media
+Unreadable fonts or poor typography
+Lack of search functionality
+Excessive pop-ups or ads
+Cluttered page layout
+Lack of clear call-to-action
+Complex registration processes
+Neglecting SEO practices
+Broken Links and 404 Errors
+Ignoring Accessibility
+Ineffective use of images and graphics
+Inconsistent Design
+*login registration module is not a module
+HTML tags
+<Doc type>
+<Header section>
+<Body section>I am a good person because
+Lab evaluation involving maths-multiplication table, algrbric eq
+
+HTML tables
+Rowspan, Colspan
+Create a table with the following headings -qualification, school/college of study, place, percentage.
+Cellpadding
+cell spacing
+Create a table with rows academic recognitions, additional info
+Academic recognition will have the columns- GitHub Url, hackathons, no. of products developed, no. of certifications.
+
+
