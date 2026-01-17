@@ -1,0 +1,566 @@
+NODE JS
+
+Node.js is a runtime, similar to Java virtual machine, that converts JavaScript code into machine code.
+popular choice for frontend development, application development around MERN (MongoDB, Express, React and Node.js.) and MEAN (MongoDB, Express, Angular and Node.js) stacks
+Node.js is used for server-side programming with JavaScript.
+Node.js implements asynchronous execution of tasks in a single thread with async and await technique.
+Node.js is being used to build command line applications, web applications, real-time chat applications, REST APIs etc.
+
+To create ‘hello, world’ web application using Nodejs
+http = require('node:http');
+listener = function (request, response) {
+ // Send the HTTP header
+ // HTTP Status: 200 : OK
+ // Content Type: text/html
+ response.writeHead(200, {'Content-Type': 'text/html'});
+
+ // Send the response body as "Hello World"
+ response.end('<h2 style="text-align: center;">Hello World</h2>');
+};
+
+server = http.createServer(listener);
+server.listen(3000);
+
+// Console will print the message
+console.log('Server running at http://127.0.0.1:3000/');
+
+Import Required Module
+	var http = require("http");
+Create Server
+	http.createServer(requestListener);
+The requestlistener function takes request HTTP request and response objects from Node.js runtime, and returns a ServerResponse object.
+	listener = function (request, response) {
+   // Send the HTTP header 
+   // HTTP Status: 200 : OK
+   // Content Type: text/plain
+   response.writeHead(200, {'Content-Type': 'text/html'});
+  
+   // Send the response body as "Hello World"
+   response.end('<h2 style="text-align: center;">Hello World</h2>');
+};
+
+Testing Request & Response
+	http = require('node:http');
+listener = function (request, response) {
+   // Send the HTTP header 
+   // HTTP Status: 200 : OK
+   // Content Type: text/html
+   response.writeHead(200, {'Content-Type': 'text/html'});
+  
+   // Send the response body as "Hello World"
+   response.end('<h2 style="text-align: center;">Hello World</h2>');
+};
+
+server = http.createServer(listener);
+server.listen(3000);
+
+// Console will print the message
+
+console.log('Server running at http://127.0.0.1:3000/');
+
+
+
+Node.js Architecture: 
+1. Client Request Phase 
+Clients send requests to the Node.js server 
+Each request is added to the Event Queue 
+2. Event Loop Phase 
+The Event Loop continuously checks the Event Queue 
+Picks up requests one by one in a loop 
+3. Request Processing 
+Simple (non-blocking) tasks are handled immediately by the main thread 
+Complex/blocking tasks are offloaded to the Thread Pool 
+4. Response Phase 
+When blocking tasks complete, their callbacks are placed in the Callback Queue 
+Event Loop processes callbacks and sends responses 
+ 
+Non-blocking Example :  
+const fs = require('fs'); 
+console.log('Before file read'); 
+fs.readFile('Marks.txt', 'utf8', (err, data) => { 
+  if (err) throw err; 
+  console.log('File contents:', data); 
+}); 
+console.log('After file read'); 
+ 
+Blocking Code :  
+
+console.log('Start of blocking code'); 
+const data = fs.readFileSync('myfile.txt', 'utf8');// Blocks here 
+console.log('Blocking operation completed'); 
+ 
+ 
+When to Use Node.js 
+Node.js is particularly well-suited for: 
+I/O-bound applications - File operations, database queries, network requests 
+Real-time applications - Chat apps, live notifications, collaboration tools 
+APIs - RESTful services, GraphQL APIs 
+Microservices - Small, independent services 
+ 
+Note: Node.js may not be the best choice for CPU-intensive tasks as they can block the event loop. For such cases, consider: 
+Using worker threads 
+Creating a microservice in a more suitable language 
+Using native add-ons 
+ 
+Event Loop: 
+The event loop is what makes Node.js non-blocking and efficient. 
+It handles asynchronous operations by delegating tasks to the system and processing their results through callbacks, allowing Node.js to manage thousands of concurrent connections with a single thread. 
+ 
+How the Event Loop Works 
+Node.js follows these steps to handle operations: 
+Execute the main script (synchronous code) 
+Process any microtasks (Promises, process.nextTick) 
+Execute timers (setTimeout, setInterval) 
+Run I/O callbacks (file system, network operations) 
+Process setImmediate callbacks 
+Handle close events (like socket.on('close')) 
+Example: Event Loop Order :  
+console.log('First'); 
+setTimeout(() => console.log('Third'), 0); 
+Promise.resolve().then(() => console.log('Second')); 
+console.log('Fourth'); 
+ 
+Event Loop Phases 
+The event loop processes different types of callbacks in this order: 
+Timers: setTimeout, setInterval 
+I/O Callbacks: Completed I/O operations 
+Poll: Retrieve new I/O events 
+Check: setImmediate callbacks 
+Close: Cleanup callbacks (like socket.on('close')) 
+ 
+Note: Between each phase, Node.js runs microtasks (Promises) and process.nextTick callbacks. 
+ 
+Event Loop Phases 
+console.log('1. Start'); 
+ 
+// Next tick queue 
+process.nextTick(() => console.log('2. Next tick')); 
+ 
+// Microtask queue (Promise) 
+Promise.resolve().then(() => console.log('3. Promise')); 
+ 
+// Timer phase 
+setTimeout(() => console.log('4. Timeout'), 0); 
+ 
+// Check phase 
+setImmediate(() => console.log('5. Immediate')); 
+ 
+console.log('6. End'); 
+ 
+The output will be: 
+1. Start 
+6. End 
+2. Next tick 
+3. Promise 
+4. Timeout 
+5. Immediate 
+ 
+Promises: 
+const fs = require('fs').promises; 
+ 
+console.log('1. Reading file...'); 
+fs.readFile('myfile.txt', 'utf8') 
+  .then(data => { 
+    console.log('3. File content:', data); 
+  }) 
+  .catch(err => console.error('Error:', err)); 
+ 
+console.log('2. This runs before file is read!'); 
+ 
+ 
+2. Async/Await (Recommended) 
+async function readFiles() { 
+  try { 
+    console.log('1. Starting to read files...'); 
+    const data1 = await fs.readFile('Marks.txt', 'utf8'); 
+    const data2 = await fs.readFile('personal.txt', 'utf8'); 
+    console.log('2. Files read successfully!'); 
+    return { data1, data2 }; 
+  } catch (error) { 
+    console.error('Error reading files:', error); 
+  } 
+} 
+ 
+Key Takeaways 
+ Use async/await for better readability 
+ Always handle errors with try/catch 
+ Run independent operations in parallel with Promise.all 
+ Avoid mixing sync and async code patterns 
+ Don't forget to await promises 
+
+Modules  
+ 
+HTTP Module:  
+Key Features 
+Create HTTP servers to handle requests and send responses 
+Make HTTP requests to other servers 
+Handle different HTTP methods (GET, POST, PUT, DELETE, etc.) 
+Work with request and response headers 
+Handle streaming data for large payloads 
+ 
+Including the HTTP Module:  
+To use the HTTP module, include it in your application using the require() method: 
+// Using CommonJS require (Node.js default) 
+const http = require('http'); 
+ 
+ 
+ 
+ 
+ 
+ 
+Basic HTTP Server Example:  
+// Import the HTTP module 
+const http = require('http'); 
+ 
+// Create a server object 
+const server = http.createServer((req, res) => { 
+  // Set the response HTTP header with HTTP status and Content type 
+  res.writeHead(200, { 'Content-Type': 'text/plain' }); 
+ 
+  // Send the response body as 'Hello, World!' 
+  res.end('Hello, World!\n'); 
+}); 
+ 
+// Define the port to listen on const PORT = 3000; 
+ 
+// Start the server and listen on the specified port 
+server.listen(PORT, 'localhost', () => { 
+  console.log(`Server running at http://localhost:${PORT}/`); 
+}); 
+ 
+Understanding the Code 
+http.createServer() - Creates a new HTTP server instance 
+The callback function is executed for each request with two parameters: 
+req - The request object (http.IncomingMessage) 
+res - The response object (http.ServerResponse) 
+res.writeHead() - Sets the response status code and headers 
+res.end() - Sends the response and ends the connection 
+server.listen() - Starts the server on the specified port 
+ 
+ 
+Working with HTTP Headers 
+ 
+Setting Multiple Headers :  
+const http = require('http'); 
+ 
+const server = http.createServer((req, res) => { 
+  // Set status code and multiple headers 
+  res.writeHead(200, { 
+    'Content-Type': 'text/html', 
+    'X-Powered-By': 'Node.js', 
+    'Cache-Control': 'no-cache, no-store, must-revalidate', 
+    'Set-Cookie': 'sessionid=abc123; HttpOnly' 
+  }); 
+ 
+  res.end('<h1>Hello, World!</h1>'); 
+}); 
+ 
+server.listen(3000, () => { 
+  console.log('Server running at http://localhost:3000/'); 
+}); 
+Code 
+Message 
+Description 
+200 
+OK 
+Standard response for successful HTTP requests 
+201 
+Created 
+Request has been fulfilled and new resource created 
+301 
+Moved Permanently 
+Resource has been moved to a new URL 
+400 
+Bad Request 
+Server cannot process the request due to client error 
+401 
+Unauthorized 
+Authentication is required 
+403 
+Forbidden 
+Server refuses to authorize the request 
+404 
+Not Found 
+Requested resource could not be found 
+500 
+Internal Server Error 
+Unexpected condition was encountered 
+
+ 
+
+
+Common HTTP Status Codes 
+ 
+ 
+Common Response Headers: 
+Content-Type: Specifies the media type of the content (e.g., text/html, application/json) 
+Content-Length: The length of the response body in bytes 
+Location: Used in redirects (with 3xx status codes) 
+Set-Cookie: Sets HTTP cookies on the client 
+Cache-Control: Directives for caching mechanisms 
+Access-Control-Allow-Origin: For CORS support 
+ 
+Working with URLs and Query Strings: 
+Accessing the Request URL 
+The req.url property contains the URL string that was requested, including any query parameters. 
+This is part of the http.IncomingMessage object. 
+ 
+Basic URL Handling:  
+const http = require('http'); 
+ 
+const server = http.createServer((req, res) => { 
+  // Get the URL and HTTP method 
+  const { url, method } = req; 
+ 
+  res.writeHead(200, { 'Content-Type': 'text/plain' }); 
+  res.end(`You made a ${method} request to ${url}`); 
+}); 
+ 
+server.listen(3000, () => { 
+  console.log('Server running at http://localhost:3000/'); 
+}); 
+Express.js
+
+Key Characteristics:
+Minimal and flexible
+Unopinionated (you decide how to structure your app)
+Lightweight and fast
+Extensible through middleware
+Huge ecosystem of plugins and extensions
+
+Why Choose Express.js?
+It offers:
+A robust routing system
+HTTP helpers (redirection, caching, etc.)
+Support for middleware to respond to HTTP requests
+A templating engine for dynamic HTML rendering
+Error handling middleware
+
+Frontend, middleware, backend
+Express js code reference:
+const express = require('express');
+const app = express();
+const port = 8080;
+
+HTTP METHODS:
+app.get() - Handle GET requests
+app.post() - Handle POST requests
+app.put() - Handle PUT requests
+app.delete() - Handle DELETE requests
+app.all() - Handle all HTTP methods
+
+Example: 
+const express = require('express');
+const app = express();
+const port = 8080;
+
+// Respond to GET request on the root route
+app.get('/', (req, res) => {
+  res.send('GET request to the homepage');
+});
+
+// Respond to POST request on the root route
+app.post('/', (req, res) => {
+  res.send('POST request to the homepage');
+});
+
+// Respond to GET request on the /about route
+app.get('/about', (req, res) => {
+  res.send('About page');
+});
+
+// Catch all other routes
+app.all('*', (req, res) => {
+  res.status(404).send('404 - Page not found');
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+
+Route Parameters
+They are specified in the path with a colon : prefix.
+Route parameters that can be accessed via req.params.
+
+Write the code in express for accessingAadhaar no., and name
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = 3000;
+
+// Middleware to parse JSON data from request body
+app.use(bodyParser.json());
+
+// Route to accept Aadhaar number and name
+app.post('/submit', (req, res) => {
+  const { aadhaar, name } = req.body;
+
+  if (!aadhaar || !name) {
+    return res.status(400).json({ message: 'Aadhaar number and name are required' });
+  }
+
+  // ⚠️ In real apps: validate and secure this data
+  console.log('Received data:');
+  console.log('Aadhaar Number:', aadhaar);
+  console.log('Name:', name);
+
+  res.json({
+    message: 'Data received successfully',
+    data: { aadhaar, name }
+  });
+});
+
+// Home route
+app.get('/', (req, res) => {
+  res.send('Welcome! Use POST /submit with JSON { "aadhaar": "...", "name": "..." }');
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
+
+Query Parameters
+key-value pairs that appear after the ? in a URL.
+parsed by Express and available in req.query.
+
+Example:
+
+// Route handling query parameters
+app.get('/search', (req, res) => {
+  // Access query parameters using req.query
+  const { q, category } = req.query;
+  res.send(`Search query: ${q}, Category: ${category || 'none'}`);
+});
+
+
+
+MongoDB Insert
+Example 
+Insert a document in the "students" collection:
+
+let MongoClient = require('mongodb').MongoClient;
+let url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+let dbo = db.db("schooldb");
+let myobj = { name: "DPS", address: "CG04" };
+dbo.collection("students").insertOne(myobj, function(err, res) {
+    if (err) throw err;
+    console.log("1 document inserted");
+    db.close();
+  });
+});
+
+Insert Multiple Documents
+use the insertMany() method
+Example
+Insert multiple documents in the "customers" collection:
+let MongoClient = require('mongodb').MongoClient;
+let url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  let dbo = db.db("schooldb");
+  let myobj = [
+    { name: 'John', address: 'Highway 71'},
+    { name: 'Peter', address: 'Lowstreet 4'},
+    { name: 'Amy', address: 'Apple st 652'},
+];
+dbo.collection("students").insertMany(myobj, function(err, res) {
+    if (err) throw err;
+    console.log("Number of documents inserted: " + res.insertedCount);
+    db.close();
+  });
+});
+The Result Object
+When executing the insertMany() method, a result object is returned.
+Example
+Return the number of inserted documents:
+console.log(res.insertedCount)
+
+MongoDB Find
+
+Example 
+Find the first document in the customers collection:
+let MongoClient = require('mongodb').MongoClient;
+let url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  let dbo = db.db("mydb");
+  dbo.collection("customers").findOne({}, function(err, result) {
+    if (err) throw err;
+    console.log(result.name);
+    db.close();
+  });
+});
+
+Example
+Find all documents in the customers collection:
+let MongoClient = require('mongodb').MongoClient;
+let url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  let dbo = db.db("mydb");
+  dbo.collection("customers").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    db.close();
+  });
+});
+
+Find Some
+Example
+Return the fields "name" and "address" of all documents in the customers collection:
+let MongoClient = require('mongodb').MongoClient;
+let url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  let dbo = db.db("mydb");
+  dbo.collection("customers").find({}, { projection: { _id: 0, name: 1, address: 1 } }).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    db.close();
+  });
+});
+
+Example
+This example will exclude "address" from the result:
+let MongoClient = require('mongodb').MongoClient;
+let url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  let dbo = db.db("mydb");
+  dbo.collection("customers").find({}, { projection: { address: 0 } }).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    db.close();
+  });
+});
+
+Modify the code to exclude a column in the output
+let MongoClient = require('mongodb').MongoClient;
+let url = "mongodb://localhost:27017/";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  let dbo = db.db("mydb");
+  dbo.collection("customers").find({}, { projection: { column: 0 } }).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    db.close();
+  });
+});
+
+MongoDB Update
+
+updateOne() method:
+let myquery = { address: "Valley 345" };
+let newvalues = { $set: {name: "Mickey", address: "Canyon 123" } };
+dbo.collection("customers").updateOne(myquery, newvalues, function(err, res)
