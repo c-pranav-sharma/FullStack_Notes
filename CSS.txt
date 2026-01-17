@@ -1,0 +1,132 @@
+CSS
+HTML Layouts
+
+<header> - Defines a header for a document or a section
+<nav> - Defines a set of navigation links
+<section> - Defines a section in a document
+<article> - Defines independent, self-contained content
+<aside> - Defines content aside from the content (like a sidebar)
+<footer> - Defines a footer for a document or a section
+<details> - Defines additional details that the user can open and close on demand
+<summary> - Defines a heading for the <details> element
+Floating layout
+
+Flex-box Layout(adaptive)
+
+Grid Layout
+
+
+
+layout they are using:
+1)Banking domain-flex box
+2)shopping-flexbox and grid
+3)college websites-flexbox/grid
+Limitations of these layouts
+1)float
+❌ Not meant for complex layouts
+Difficult to create multi-column or responsive designs.
+Requires “clearfix” hacks to prevent container collapse.
+❌ Poor alignment control
+No easy way to center items vertically or horizontally.
+No control over spacing or distribution.
+❌ Layout breaks easily
+Float elements can overlap or break when content size changes.
+❌ Requires many hacks
+clear, clear fix, and manual width settings make layouts brittle.
+2)flex
+❌ One-direction at a time
+Flexbox handles layout in either a row OR a column — not both simultaneously.
+Not ideal for entire page layout.
+❌ Complex when scaling to large grids
+Hard to create large, structured layouts like dashboards.
+Items may wrap unpredictably.
+❌ No control over row and column alignment together
+You can align along the main axis or cross axis, but not a full 2D matrix.
+❌ Performance issues with many items
+Large numbers of flex items can cause rendering slowdowns.
+
+3)grid
+❌ Not supported by all legacy browsers
+Older browsers (IE11 partial support) cause issues.
+❌ Overkill for simple layouts
+Using Grid when only one direction is needed can add unnecessary complexity.
+❌ Learning curve
+Concepts like line-based placement, template areas, and implicit grid can be challenging.
+❌ Items may not behave intuitively
+Auto-placement might put items where you don’t expect.
+Explicit vs implicit grid areas can confuse beginners.
+❌ Harder when content size is unpredictable
+Grids may break if content grows beyond expected sizes.
+
+
+
+
+
+
+Scripting
+1)Client side scripting(button)
+2)Server side scripting(button type=submit)connect to server
+
+
+Difference between type script and java script
+Feature
+TypeScript
+JavaScript
+Typing
+Provides static typing
+Dynamically typed
+ 
+Tooling
+Comes with IDEs and code editors 
+Limited built-in tooling
+ 
+Syntax
+Similar to JavaScript, with additional features 
+Standard JavaScript syntax
+ 
+Compatibility
+Backward compatible with JavaScript 
+Cannot run TypeScript in JavaScript files
+ 
+Debugging
+Stronger typing can help identify errors 
+May require more debugging and testing
+ 
+Learning curve 
+Can take time to learn additional features 
+Standard JavaScript syntax is familiar
+
+
+December -02
+Difference between get and post methods
+Validation example: empty
+not empty
+validations like email or roll no
+Control Name
+Purpose
+Validation/custom validation
+empty
+
+
+
+
+Non empty
+
+
+
+
+Email or roll no validation
+
+
+
+
+Date not today and not after that for dob
+
+
+
+
+
+Design -1: mark ,validations ,function  to write (emp salary calculation if hre given then total salary ,coding using ReactJS, scripting using JavaScript)-mid term
+Insert, delete, update, search, display-crud operations
+
+
